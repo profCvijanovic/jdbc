@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import metode.CommonMethods;
@@ -9,6 +10,18 @@ import model.Drzava;
 import model.Student;
 
 public class FakultetSqlLogic {
+	
+	private void zatvoriResultSet(ResultSet rs) {
+		if(rs != null) {
+			try {
+				rs.close();
+				System.out.println("Zatvorio result set...");
+			} catch (SQLException e) {
+				System.out.println("Nije zatvorio result set!");
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	private void zatvoriPreparedStatement(PreparedStatement ps) {
 		if(ps != null) {
@@ -113,6 +126,38 @@ public class FakultetSqlLogic {
 			zatvoriPreparedStatement(pst);
 			zatvoriKonekciju(con);
 		}	
+	}
+
+	public int vratiIdStudent(String index) {
+		int id = 0;
+		
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		
+		try {
+			con = CommonMethods.konektujSe("fakultet");
+			System.out.println("Konekcija OK...");
+			String sql = "SELECT id_student\n"
+					+ "FROM student\n"
+					+ "WHERE broj_indexa = ?";
+			pst = con.prepareStatement(sql);
+				pst.setInt(1, Integer.parseInt(index));
+			
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				id = rs.getInt("id_student");
+			}
+	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			zatvoriResultSet(rs);
+			zatvoriPreparedStatement(pst);
+			zatvoriKonekciju(con);
+		}	
+		return id;
 	}
 	
 	
