@@ -11,7 +11,7 @@ import model.Student;
 
 public class FakultetSqlLogic {
 	
-	private void zatvoriResultSet(ResultSet rs) {
+	protected void zatvoriResultSet(ResultSet rs) {
 		if(rs != null) {
 			try {
 				rs.close();
@@ -23,7 +23,7 @@ public class FakultetSqlLogic {
 		}
 	}
 	
-	private void zatvoriPreparedStatement(PreparedStatement ps) {
+	protected void zatvoriPreparedStatement(PreparedStatement ps) {
 		if(ps != null) {
 			try {
 				ps.close();
@@ -35,7 +35,7 @@ public class FakultetSqlLogic {
 		}
 	}
 	
-	private void zatvoriKonekciju(Connection con) {
+	protected void zatvoriKonekciju(Connection con) {
 		if(con != null) {
 			try {
 				con.close();
