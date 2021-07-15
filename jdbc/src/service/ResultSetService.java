@@ -1,7 +1,10 @@
 package service;
 
+import java.util.List;
+
 import dao.ResultSetLogic;
 import model.Predmet;
+import model.Student;
 
 public class ResultSetService {
 	
@@ -18,5 +21,11 @@ public class ResultSetService {
 		// servis ce rezultat obrade metode iz logica proslediti nazad kontroleru
 		return logic.vratiPredmetPoId(id);
 	}
+
+	public List<Student> dajMiSveStudenteIzBaze() {
+		return logic.vratiSveStudente();
+	}
+	
+	
 
 }

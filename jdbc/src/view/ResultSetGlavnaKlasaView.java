@@ -1,9 +1,8 @@
 package view;
 
-import java.util.Scanner;
-
+import java.util.List;
 import controller.ResultSetController;
-import model.Predmet;
+import model.Student;
 
 public class ResultSetGlavnaKlasaView {
 
@@ -11,27 +10,22 @@ public class ResultSetGlavnaKlasaView {
 		
 		ResultSetController controller = new ResultSetController();
 		
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Unesite id predmeta: ");
-		String id = scanner.nextLine();
-		scanner.close();
+		List<Student> sviStudenti = controller.dajMiSveStudenteIzBaze();
+
+		System.out.println("id**ime**prezime**index**smer**drzava**polozeni ispiti**");
 		
-		/*
-		 * String nazivSmera = controller.dajMiNazivSmera(id);
-		 * System.out.println("Naziv smera je: " + nazivSmera);
-		 */
+		for(Student s: sviStudenti) {			
+			System.out.println(s.getIdStudent() + "   "
+								+ s.getIme() + "   " 
+								+ s.getPrezime() + "   " 
+								+ s.getBrojIndexa() + "   " 
+								+ s.getSmer() + "   " 
+								+ s.getDrzava() + "   " 
+								+ s.getIspiti() );		
+		}
 		
-		// krecemo od user interface-a, tj glavne klase
-		// pozivamo kontroler da nam vrati objekat predmet
-		// (koji smo prethodno napravili kao model po uzoru na tabelu predmet iz baze)
-		Predmet predmet = controller.vratiMiPredmet(id);
 		
-		//na kraju: ispis predmeta iz baze
-		System.out.println("Izabrani predmet: ");
-		System.out.println("ID: " + predmet.getIdPredmet());
-		System.out.println("Naziv predmeta: " + predmet.getNazivPredmeta());
-		System.out.println("Broj semestara: " + predmet.getBrojSemestara());
-		System.out.println("Smer: " + predmet.getSmer());
+		
 
 	}
 

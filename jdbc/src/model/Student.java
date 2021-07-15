@@ -2,6 +2,7 @@ package model;
 
 public class Student {
 	
+	private int idStudent;
 	private String ime;
 	private String prezime;
 	private int brojIndexa;
@@ -45,5 +46,13 @@ public class Student {
 	public void setIspiti(int ispiti) {
 		this.ispiti = ispiti;
 	}
+	public int getIdStudent() {
+		return idStudent;
+	}
+	public void setIdStudent(int idStudent) {
+		this.idStudent = idStudent;
+	}
+	
+	
 	
 }

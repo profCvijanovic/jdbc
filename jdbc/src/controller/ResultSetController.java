@@ -1,6 +1,9 @@
 package controller;
 
+import java.util.List;
+
 import model.Predmet;
+import model.Student;
 import service.ResultSetService;
 
 public class ResultSetController {
@@ -19,5 +22,14 @@ public class ResultSetController {
 		// kontroler vraca odgovor glavnoj klasi (user interface-u)
 		return service.vratiMiPredmet(id);
 	}
+
+	public List<Student> dajMiSveStudenteIzBaze() {
+		
+		return service.dajMiSveStudenteIzBaze();
+	}
+	
+	
+	
+	
 
 }
